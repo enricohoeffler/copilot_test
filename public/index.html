@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Node.js App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Simple Node.js App</h1>
+        <p>This is a basic web application built with Express.js</p>
+        
+        <section class="api-section">
+            <h2>API Endpoints</h2>
+            <button onclick="callHelloAPI()">Call Hello API</button>
+            <button onclick="callTimeAPI()">Call Time API</button>
+        </section>
+        
+        <section class="response-section">
+            <h3>Response:</h3>
+            <pre id="response">Click a button to see the response...</pre>
+        </section>
+    </div>
+    
+    <script>
+        async function callHelloAPI() {
+            try {
+                const response = await fetch('/api/hello');
+                const data = await response.json();
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('response').textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        async function callTimeAPI() {
+            try {
+                const response = await fetch('/api/time');
+                const data = await response.json();
+                document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('response').textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
